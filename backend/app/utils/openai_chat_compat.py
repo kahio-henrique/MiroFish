@@ -11,10 +11,11 @@ from typing import Any, Dict, List, Optional
 
 
 def is_gpt5_family(model: Optional[str]) -> bool:
-    """Return True when model belongs to GPT-5 family aliases/snapshots."""
+    """Return True for GPT-5 and GPT-6 family models."""
     if not model:
         return False
-    return model.strip().lower().startswith("gpt-5")
+    return model.strip().lower().startswith(("gpt-5", "gpt-6"))
+
 
 
 def create_chat_completion(

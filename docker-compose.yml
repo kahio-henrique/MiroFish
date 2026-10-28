@@ -9,9 +9,14 @@ services:
       - "3001:3000"
       - "5001:5001"
     restart: unless-stopped
+
     volumes:
-      - mirofish_uploads:/app/backend/uploads
+      # Armazenamento dos projetos
+      - ./backend/uploads:/app/backend/uploads
+
+      # Configuração do frontend
       - ./frontend/vite.config.js:/app/frontend/vite.config.js
 
-volumes:
-  mirofish_uploads:
+      # Arquivos Python corrigidos para GPT-6
+      - ./backend/app/utils/llm_client.py:/app/backend/app/utils/llm_client.py:ro
+      - ./backend/app/utils/openai_chat_compat.py:/app/backend/app/utils/openai_chat_compat.py:ro
